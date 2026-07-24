@@ -55,7 +55,6 @@ button{
     font-size:18px;
 }
 </style>
-
 </head>
 
 <body>
@@ -65,32 +64,11 @@ button{
 <div id="chat"></div>
 
 <div class="bottom">
-<input id="userInput" placeholder="कुछ लिखिए...">
+<input id="userInput" type="text" placeholder="कुछ लिखिए...">
 <button onclick="sendMessage()">Send</button>
 </div>
 
-<script>
-
-async function sendMessage(){
-
-const input=document.getElementById("userInput");
-const chat=document.getElementById("chat");
-
-const message=input.value.trim();
-
-if(message=="") return;
-
-chat.innerHTML+=`<div class="user"><b>👤 You:</b> ${message}</div>`;
-
-input.value="";
-
-chat.innerHTML+=`<div class="ai"><b>🤖 UltraAI:</b> Gemini API अभी जोड़ा जाना बाकी है।</div>`;
-
-chat.scrollTop=chat.scrollHeight;
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
