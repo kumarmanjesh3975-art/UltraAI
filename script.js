@@ -1,4 +1,4 @@
-const API_KEY = "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";
+const API_KEY = "sk-or-v1-00d73bff05d5617012c8ce49c43aae13541ae7ae57076846f8e7514423bbd6d9x";
 
 async function askAI(message) {
   try {
