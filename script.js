@@ -6,14 +6,16 @@ async function askAI(message) {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${API_KEY}`,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://kumarmanjesh3975-art.github.io/UltraAI/",
+        "X-Title": "UltraAI"
       },
       body: JSON.stringify({
         model: "openai/gpt-4.1-mini",
         messages: [
           {
             role: "system",
-            content: "तुम UltraAI हो। अगर कोई पूछे 'तुम्हें किसने बनाया?' तो जवाब दो: 'मुझे Manjesh Ji ने बनाया है।'"
+            content: "तुम UltraAI हो। अगर कोई पूछे तुम्हें किसने बनाया, तो जवाब दो: मुझे Manjesh Ji ने बनाया है।"
           },
           {
             role: "user",
