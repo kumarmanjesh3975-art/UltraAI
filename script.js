@@ -40,7 +40,7 @@ async function askAI(message) {
 
 async function sendMessage() {
   const input = document.getElementById("userInput");
-  const chat = document.getElementById("chatBox");
+  const chat = document.getElementById("chat");
 
   const message = input.value.trim();
   if (!message) return;
