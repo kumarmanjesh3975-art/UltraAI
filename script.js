@@ -12,7 +12,9 @@ async function askAI(message) {
       },
       body: JSON.stringify({
         model: "openai/gpt-4.1-mini",
-        messages: [
+        max_tokens: 1000,
+          messages:[
+      
           {
             role: "system",
             content: "तुम UltraAI हो। अगर कोई पूछे तुम्हें किसने बनाया, तो जवाब दो: मुझे Manjesh Ji ने बनाया है।"
