@@ -1,43 +1,161 @@
 <!DOCTYPE html>
 <html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🤖 UltraAI</title>
 
-  <link rel="stylesheet" href="style.css">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🤖 UltraAI</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
+
 <body>
 
+
 <header class="header">
-  <h1>🤖 UltraAI</h1>
+
+<h1>🤖 UltraAI</h1>
+
+<p>AI Assistant</p>
+
 </header>
 
-<div id="chat" class="chat"></div>
 
-<div class="bottom">
 
-  <button id="micBtn" onclick="startListening()">
-    🎤
-  </button>
+<!-- Language -->
 
-  <input
-    type="text"
-    id="userInput"
-    placeholder="कुछ पूछिए..."
-    autocomplete="off"
-  >
+<div class="language">
 
-  <button id="sendBtn" onclick="sendMessage()">
-    Send
-  </button>
+<select id="languageSelect">
+
+<option value="hi-IN">हिंदी</option>
+
+<option value="en-US">English</option>
+
+<option value="ur-PK">اردو</option>
+
+<option value="es-ES">Spanish</option>
+
+<option value="fr-FR">French</option>
+
+<option value="de-DE">German</option>
+
+<option value="ja-JP">Japanese</option>
+
+<option value="zh-CN">Chinese</option>
+
+</select>
 
 </div>
 
+
+
+
+<!-- Chat Area -->
+
+<div id="chat" class="chat">
+
+</div>
+
+
+
+
+
+<!-- Photo Editor -->
+
+<div class="photo-box">
+
+<h2>🖼️ Photo Edit</h2>
+
+<input type="file" id="imageUpload" accept="image/*">
+
+<button onclick="editPhoto()">
+✨ Edit Photo
+</button>
+
+</div>
+
+
+
+
+
+<!-- Premium -->
+
+<div class="premium-box">
+
+<h2>⭐ UltraAI Premium</h2>
+
+<p>
+Advanced AI + Voice + Photo Editing
+</p>
+
+<button onclick="buyPremium()">
+
+Upgrade
+
+</button>
+
+</div>
+
+
+
+
+
+<!-- Input Area -->
+
+<div class="bottom">
+
+
+<button id="micBtn" onclick="startListening()">
+
+🎤
+
+</button>
+
+
+
+<input
+type="text"
+id="userInput"
+placeholder="कुछ पूछिए..."
+autocomplete="off"
+>
+
+
+
+<button id="sendBtn" onclick="sendMessage()">
+
+Send
+
+</button>
+
+
+</div>
+
+
+
+
+
+<!-- Scripts -->
+
 <script src="script.js"></script>
+
 <script src="speech.js"></script>
+
 <script src="languages.js"></script>
+
 <script src="assistant.js"></script>
 
+<script src="photo.js"></script>
+
+<script src="premium.js"></script>
+
+
+
 </body>
+
 </html>
