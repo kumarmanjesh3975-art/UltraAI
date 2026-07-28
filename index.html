@@ -1,216 +1,155 @@
-// 🤖 UltraAI Voice System
+<!DOCTYPE html>
+<html lang="hi">
 
-const SpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
+<head>
 
-let recognition;
-let voiceMode = false;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>🤖 UltraAI</title>
 
-if (SpeechRecognition) {
+<link rel="stylesheet" href="style.css">
 
-  recognition = new SpeechRecognition();
+</head>
 
-  recognition.continuous = false;
-  recognition.interimResults = false;
 
+<body>
 
-  // Normal Mic
-  function startListening() {
 
-    setLanguage();
+<header class="header">
 
-    recognition.start();
+<h1>🤖 UltraAI</h1>
 
-  }
+<p>AI Voice Assistant</p>
 
+</header>
 
 
-  // 📞 Voice Mode Start
 
-  function startVoiceMode() {
+<div class="language">
 
-    voiceMode = true;
+<select id="languageSelect">
 
-    speakText("नमस्ते, मैं UltraAI हूँ। बताइए मैं आपकी क्या मदद कर सकता हूँ।");
+<option value="hi-IN">हिंदी</option>
+<option value="en-US">English</option>
+<option value="ur-PK">اردو</option>
+<option value="es-ES">Spanish</option>
+<option value="fr-FR">French</option>
+<option value="de-DE">German</option>
+<option value="ja-JP">Japanese</option>
+<option value="zh-CN">Chinese</option>
 
-    setTimeout(() => {
+</select>
 
-      recognition.start();
+</div>
 
-    }, 2000);
 
-  }
 
+<!-- Voice Button -->
 
+<div id="voiceCircle" onclick="startVoiceMode()">
 
+🎤
 
-  function setLanguage(){
+</div>
 
-    let lang =
-    document.getElementById("languageSelect");
 
 
-    if(lang){
+<div id="chat" class="chat">
 
-      recognition.lang = lang.value;
+</div>
 
-    }else{
 
-      recognition.lang = "hi-IN";
 
-    }
 
-  }
+<!-- Photo Edit -->
 
+<div class="photo-box">
 
+<h2>🖼️ UltraAI Photo Editor</h2>
 
+<input type="file" id="imageUpload" accept="image/*">
 
-  // User Voice Result
+<button onclick="editPhoto()">
 
-  recognition.onresult = function(event){
+✨ Edit Photo
 
+</button>
 
-    let text =
-    event.results[0][0].transcript;
+</div>
 
 
-    document.getElementById("userInput").value = text;
 
 
-    sendMessage();
+<!-- Premium -->
 
+<div class="premium-box">
 
+<h2>⭐ UltraAI Premium</h2>
 
-  };
+<p>
+Advanced AI + Voice + Photo Features
+</p>
 
+<button onclick="buyPremium()">
 
+Upgrade
 
+</button>
 
+</div>
 
-  // AI बोलने के बाद फिर सुनना
 
-  recognition.onend = function(){
 
-    if(voiceMode){
 
-      setTimeout(()=>{
+<!-- Chat Input -->
 
-        recognition.start();
+<div class="bottom">
 
-      },1500);
 
-    }
+<button id="micBtn" onclick="startListening()">
 
-  };
+🎤
 
+</button>
 
 
 
+<input
+type="text"
+id="userInput"
+placeholder="कुछ पूछिए..."
+autocomplete="off"
+>
 
-  recognition.onerror = function(error){
 
-    console.log(error);
 
+<button id="sendBtn" onclick="sendMessage()">
 
-    if(voiceMode){
+Send
 
-      setTimeout(()=>{
+</button>
 
-        recognition.start();
 
-      },2000);
+</div>
 
-    }
 
-  };
 
 
 
-}
+<script src="script.js"></script>
 
+<script src="speech.js"></script>
 
+<script src="languages.js"></script>
 
+<script src="assistant.js"></script>
 
-// 🔊 AI Voice
+<script src="photo.js"></script>
 
-function speakText(text){
+<script src="premium.js"></script>
 
 
-  let speech =
-  new SpeechSynthesisUtterance(text);
+</body>
 
-
-
-  let lang =
-  document.getElementById("languageSelect");
-
-
-  if(lang){
-
-    speech.lang = lang.value;
-
-  }else{
-
-    speech.lang="hi-IN";
-
-  }
-
-
-
-  speech.rate = 1;
-
-  speech.pitch = 1.2;
-
-
-
-  let voices =
-  window.speechSynthesis.getVoices();
-
-
-
-  let female =
-  voices.find(v =>
-
-    v.name.toLowerCase().includes("female") ||
-
-    v.name.toLowerCase().includes("zira") ||
-
-    v.name.toLowerCase().includes("google")
-
-  );
-
-
-
-  if(female){
-
-    speech.voice = female;
-
-  }
-
-
-
-  window.speechSynthesis.speak(speech);
-
-
-}
-
-
-
-
-
-// Voice Mode बंद करने के लिए
-
-function stopVoiceMode(){
-
-  voiceMode = false;
-
-  window.speechSynthesis.cancel();
-
-  if(recognition){
-
-    recognition.stop();
-
-  }
-
-}
+</html>
