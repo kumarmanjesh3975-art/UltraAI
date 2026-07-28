@@ -1,42 +1,102 @@
-// ===== UltraAI Voice Part 2 =====
+// 🎤 UltraAI Voice System
 
-function speak(text) {
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    window.speechSynthesis.cancel();
+let recognition;
 
-    const utter = new SpeechSynthesisUtterance(text);
+if (SpeechRecognition) {
 
-    utter.rate = 1;
-    utter.pitch = 1;
-    utter.volume = 1;
+  recognition = new SpeechRecognition();
 
-    const voices = speechSynthesis.getVoices();
+  recognition.continuous = false;
+  recognition.interimResults = false;
 
-    // पहले महिला आवाज़ ढूँढने की कोशिश
-    let female =
-        voices.find(v =>
-            v.lang.startsWith("hi") &&
-            (v.name.toLowerCase().includes("female") ||
-             v.name.toLowerCase().includes("google"))
-        );
 
-    // नहीं मिली तो कोई भी हिंदी आवाज़
-    if (!female) {
-        female = voices.find(v => v.lang.startsWith("hi"));
+  // Mic Start
+  function startListening() {
+
+    let lang = document.getElementById("languageSelect");
+
+    if (lang) {
+      recognition.lang = lang.value;
+    } else {
+      recognition.lang = "hi-IN";
     }
 
-    // फिर अंग्रेज़ी
-    if (!female) {
-        female = voices.find(v => v.lang.startsWith("en"));
-    }
+    recognition.start();
+  }
 
-    if (female) {
-        utter.voice = female;
-    }
 
-    speechSynthesis.speak(utter);
+  // Voice Result
+  recognition.onresult = function(event) {
+
+    let text =
+      event.results[0][0].transcript;
+
+    document.getElementById("userInput").value = text;
+
+    sendMessage();
+
+  };
+
+
+  recognition.onerror = function() {
+
+    alert("Mic permission check करें");
+
+  };
+
+
+} else {
+
+  console.log("Voice support नहीं है");
+
 }
 
-speechSynthesis.onvoiceschanged = () => {
-    speechSynthesis.getVoices();
-};
+
+// 🔊 AI Voice Reply
+
+function speakText(text) {
+
+  let speech =
+    new SpeechSynthesisUtterance(text);
+
+
+  let lang =
+    document.getElementById("languageSelect");
+
+
+  if(lang){
+    speech.lang = lang.value;
+  }
+  else{
+    speech.lang = "hi-IN";
+  }
+
+
+  speech.rate = 1;
+  speech.pitch = 1.2;
+
+
+  let voices =
+    window.speechSynthesis.getVoices();
+
+
+  // Female voice खोजने की कोशिश
+  let voice =
+    voices.find(v =>
+      v.name.toLowerCase().includes("female") ||
+      v.name.toLowerCase().includes("zira") ||
+      v.name.toLowerCase().includes("google")
+    );
+
+
+  if(voice){
+    speech.voice = voice;
+  }
+
+
+  window.speechSynthesis.speak(speech);
+
+}
