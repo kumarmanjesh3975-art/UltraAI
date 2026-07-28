@@ -105,7 +105,7 @@ async function sendMessage() {
 
   chat.scrollTop = chat.scrollHeight;
 
-
+speakText(reply);
 
   // 🔊 AI Voice Reply
 
