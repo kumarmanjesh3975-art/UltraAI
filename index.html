@@ -1,155 +1,56 @@
 <!DOCTYPE html>
 <html lang="hi">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🤖 UltraAI</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>🤖 UltraAI</title>
-
-<link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>
 
-
 <header class="header">
-
-<h1>🤖 UltraAI</h1>
-
-<p>AI Voice Assistant</p>
-
+  <h1>🤖 UltraAI</h1>
+  <p>AI Voice Assistant</p>
 </header>
 
-
-
 <div class="language">
-
-<select id="languageSelect">
-
-<option value="hi-IN">हिंदी</option>
-<option value="en-US">English</option>
-<option value="ur-PK">اردو</option>
-<option value="es-ES">Spanish</option>
-<option value="fr-FR">French</option>
-<option value="de-DE">German</option>
-<option value="ja-JP">Japanese</option>
-<option value="zh-CN">Chinese</option>
-
-</select>
-
+  <select id="languageSelect">
+    <option value="hi-IN">हिंदी</option>
+    <option value="en-US">English</option>
+    <option value="ur-PK">اردو</option>
+    <option value="es-ES">Español</option>
+    <option value="fr-FR">Français</option>
+    <option value="de-DE">Deutsch</option>
+    <option value="ja-JP">日本語</option>
+    <option value="ko-KR">한국어</option>
+    <option value="zh-CN">中文</option>
+  </select>
 </div>
 
-
-
-<!-- Voice Button -->
-
-<div id="voiceCircle" onclick="startVoiceMode()">
-
-🎙
-
-</div>
-
-
-
-<div id="chat" class="chat">
-
-</div>
-
-
-
-
-<!-- Photo Edit -->
-
-<div class="photo-box">
-
-<h2>🖼️ UltraAI Photo Editor</h2>
-
-<input type="file" id="imageUpload" accept="image/*">
-
-<button onclick="editPhoto()">
-
-✨ Edit Photo
-
-</button>
-
-</div>
-
-
-
-
-<!-- Premium -->
-
-<div class="premium-box">
-
-<h2>⭐ UltraAI Premium</h2>
-
-<p>
-Advanced AI + Voice + Photo Features
-</p>
-
-<button onclick="buyPremium()">
-
-Upgrade
-
-</button>
-
-</div>
-
-
-
-
-<!-- Chat Input -->
+<div id="chat" class="chat"></div>
 
 <div class="bottom">
 
+  <button id="voiceCircle" onclick="startVoiceMode()">
+    🎙️
+  </button>
 
-<button id="micBtn" onclick="startListening()">
+  <input
+    type="text"
+    id="userInput"
+    placeholder="कुछ पूछिए..."
+    autocomplete="off"
+  >
 
-🎤
-
-</button>
-
-
-
-<input
-type="text"
-id="userInput"
-placeholder="कुछ पूछिए..."
-autocomplete="off"
->
-
-
-
-<button id="sendBtn" onclick="sendMessage()">
-
-Send
-
-</button>
-
+  <button id="sendBtn" onclick="sendMessage()">
+    ➤
+  </button>
 
 </div>
 
-
-
-
-
 <script src="script.js"></script>
-
 <script src="speech.js"></script>
 
-<script src="languages.js"></script>
-
-<script src="assistant.js"></script>
-
-<script src="photo.js"></script>
-
-<script src="premium.js"></script>
-
-
 </body>
-
 </html>
