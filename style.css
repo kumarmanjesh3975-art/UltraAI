@@ -1,52 +1,56 @@
-/* ===== UltraAI Theme ===== */
+/* ===========================
+   UltraAI Style.css
+=========================== */
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:Arial, sans-serif;
 }
 
 body{
-    background:#0f172a;
-    color:#ffffff;
-    height:100vh;
+    background:#0F172A;
+    color:white;
     display:flex;
     flex-direction:column;
+    height:100vh;
 }
 
 /* Header */
 
 .header{
-    padding:18px;
     text-align:center;
+    padding:20px;
     background:#111827;
-    border-bottom:1px solid #2d3748;
+    border-bottom:1px solid #1E293B;
 }
 
 .header h1{
-    font-size:28px;
+    font-size:32px;
 }
 
 .header p{
-    color:#a1a1aa;
+    color:#94A3B8;
     margin-top:5px;
 }
 
 /* Language */
 
 .language{
-    padding:10px;
-    text-align:center;
+    display:flex;
+    justify-content:center;
+    margin:15px;
 }
 
 #languageSelect{
     width:220px;
     padding:10px;
-    border-radius:10px;
     border:none;
-    background:#1e293b;
-    color:#fff;
+    border-radius:12px;
+    background:#1E293B;
+    color:white;
+    font-size:16px;
 }
 
 /* Chat */
@@ -54,25 +58,72 @@ body{
 .chat{
     flex:1;
     overflow-y:auto;
-    padding:20px;
+    padding:15px;
 }
 
 .message{
     max-width:85%;
-    padding:12px 15px;
-    border-radius:15px;
+    padding:12px;
     margin:10px 0;
-    line-height:1.5;
+    border-radius:15px;
+    word-wrap:break-word;
 }
 
 .user{
-    background:#2563eb;
+    background:#2563EB;
     margin-left:auto;
 }
 
 .ai{
-    background:#1f2937;
+    background:#1E293B;
     margin-right:auto;
+}
+
+/* Sky Blue Voice Orb */
+
+#voiceCircle{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#38BDF8;
+    color:white;
+    font-size:36px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    margin:20px auto;
+    box-shadow:0 0 20px #38BDF8;
+    transition:.3s;
+}
+
+#voiceCircle:hover{
+    transform:scale(1.08);
+}
+
+/* Voice Animation */
+
+#voiceCircle.listening{
+    animation:orbPulse 1.2s infinite;
+}
+
+@keyframes orbPulse{
+
+0%{
+transform:scale(1);
+box-shadow:0 0 20px #38BDF8;
+}
+
+50%{
+transform:scale(1.2);
+box-shadow:0 0 45px #7DD3FC;
+}
+
+100%{
+transform:scale(1);
+box-shadow:0 0 20px #38BDF8;
+}
+
 }
 
 /* Bottom */
@@ -81,9 +132,8 @@ body{
     display:flex;
     align-items:center;
     gap:10px;
-    padding:12px;
+    padding:15px;
     background:#111827;
-    border-top:1px solid #2d3748;
 }
 
 #userInput{
@@ -91,60 +141,48 @@ body{
     padding:14px;
     border:none;
     border-radius:25px;
-    background:#1e293b;
-    color:#fff;
+    background:#1E293B;
+    color:white;
     font-size:16px;
     outline:none;
 }
-
-/* Voice Button */
-
-#voiceCircle{
-    width:55px;
-    height:55px;
-    border:none;
-    border-radius:50%;
-    background:#ef4444;
-    color:#fff;
-    font-size:24px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-#voiceCircle:hover{
-    transform:scale(1.08);
-}
-
-#voiceCircle.listening{
-    animation:pulse 1s infinite;
-}
-
-@keyframes pulse{
-    0%{
-        transform:scale(1);
-        box-shadow:0 0 0 rgba(239,68,68,.7);
-    }
-
-    50%{
-        transform:scale(1.15);
-        box-shadow:0 0 25px rgba(239,68,68,.8);
-    }
-
-    100%{
-        transform:scale(1);
-        box-shadow:0 0 0 rgba(239,68,68,.7);
-    }
-}
-
-/* Send Button */
 
 #sendBtn{
     width:55px;
     height:55px;
     border:none;
     border-radius:50%;
-    background:#2563eb;
-    color:#fff;
+    background:#38BDF8;
+    color:white;
     font-size:22px;
     cursor:pointer;
+    transition:.3s;
+}
+
+#sendBtn:hover{
+    transform:scale(1.08);
+}
+
+/* Status */
+
+#status{
+    text-align:center;
+    color:#7DD3FC;
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+    width:6px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#38BDF8;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111827;
 }
