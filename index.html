@@ -42,6 +42,23 @@
 <div id="chat" class="chat"></div>
 <input type="file" id="imageUpload" accept="image/*">
 <!-- Bottom -->
+    <div class="pdf-box">
+
+<h2>📄 PDF Chat</h2>
+
+<input
+type="file"
+id="pdfUpload"
+accept=".pdf"
+onchange="showPDFName()">
+
+<p id="pdfName"></p>
+
+<button onclick="uploadPDF()">
+Upload PDF
+</button>
+
+</div>
 <div class="bottom">
 
     <input
@@ -63,5 +80,6 @@
 <script src="ui.js"></script>
 <script src="history.js"></script>
 <script src="features.js"></script>
+    <script src="pdf.js"></script>
 </body>
 </html>
