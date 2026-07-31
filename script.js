@@ -128,3 +128,38 @@ async function askAI(message) {
     }
 
 }
+// ===== Send Message =====
+async function sendMessage() {
+
+    const message = input.value.trim();
+
+    if (!message) return;
+
+    addMessage(message, "user");
+
+    input.value = "";
+
+    showThinking();
+
+    const reply = await askAI(message);
+
+    hideThinking();
+
+    addMessage(reply, "ai");
+
+    // AI बोले
+    if (typeof speakText === "function") {
+        speakText(reply);
+    }
+}
+
+// Enter दबाने पर Send
+input.addEventListener("keydown", function(e){
+
+    if(e.key === "Enter"){
+
+        sendMessage();
+
+    }
+
+});
