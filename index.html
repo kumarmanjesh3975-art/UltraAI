@@ -1,56 +1,66 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🤖 UltraAI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
+<title>🤖 UltraAI</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header class="header">
-  <h1>🤖 UltraAI</h1>
-  <p>AI Voice Assistant</p>
+    <h1>🤖 UltraAI</h1>
+    <p>Smart AI Voice Assistant</p>
 </header>
 
+<!-- Language -->
 <div class="language">
-  <select id="languageSelect">
-    <option value="hi-IN">हिंदी</option>
-    <option value="en-US">English</option>
-    <option value="ur-PK">اردو</option>
-    <option value="es-ES">Español</option>
-    <option value="fr-FR">Français</option>
-    <option value="de-DE">Deutsch</option>
-    <option value="ja-JP">日本語</option>
-    <option value="ko-KR">한국어</option>
-    <option value="zh-CN">中文</option>
-  </select>
+    <select id="languageSelect">
+        <option value="hi-IN">🇮🇳 हिन्दी</option>
+        <option value="en-US">🇺🇸 English</option>
+        <option value="ur-PK">🇵🇰 اردو</option>
+        <option value="es-ES">🇪🇸 Español</option>
+        <option value="fr-FR">🇫🇷 Français</option>
+        <option value="de-DE">🇩🇪 Deutsch</option>
+        <option value="ja-JP">🇯🇵 日本語</option>
+        <option value="zh-CN">🇨🇳 中文</option>
+    </select>
 </div>
 
+<!-- Voice Status -->
+<div id="status"></div>
+
+<!-- Voice Orb -->
+<div id="voiceCircle" onclick="startVoiceMode()">
+    🎤
+</div>
+
+<!-- Chat -->
 <div id="chat" class="chat"></div>
 
+<!-- Bottom -->
 <div class="bottom">
 
-  <button id="voiceCircle" onclick="startVoiceMode()">
-    🔮
-  </button>
+    <input
+        type="text"
+        id="userInput"
+        placeholder="कुछ पूछिए..."
+        autocomplete="off"
+    >
 
-  <input
-    type="text"
-    id="userInput"
-    placeholder="कुछ पूछिए..."
-    autocomplete="off"
-  >
-
-  <button id="sendBtn" onclick="sendMessage()">
-    ➤
-  </button>
+    <button id="sendBtn" onclick="sendMessage()">
+        ➤
+    </button>
 
 </div>
 
+<!-- JavaScript -->
 <script src="script.js"></script>
 <script src="speech.js"></script>
 <script src="ui.js"></script>
+
 </body>
 </html>
