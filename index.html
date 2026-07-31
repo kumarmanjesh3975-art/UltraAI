@@ -40,33 +40,50 @@
 
 <!-- Chat -->
 <div id="chat" class="chat"></div>
-<input type="file" id="imageUpload" accept="image/*">
-<!-- Bottom -->
-    <div class="pdf-box">
 
-<h2>📄 PDF Chat</h2>
+<!-- Photo Upload -->
+<div class="photo-box">
 
-<input
-type="file"
-id="pdfUpload"
-accept=".pdf"
-onchange="showPDFName()">
+    <h2>🖼️ Photo Editor</h2>
 
-<p id="pdfName"></p>
+    <input
+        type="file"
+        id="imageUpload"
+        accept="image/*">
 
-<button onclick="uploadPDF()">
-Upload PDF
-</button>
+    <button onclick="editPhoto()">
+        Edit Photo
+    </button>
 
 </div>
+
+<!-- PDF Upload -->
+<div class="pdf-box">
+
+    <h2>📄 PDF Chat</h2>
+
+    <input
+        type="file"
+        id="pdfUpload"
+        accept=".pdf"
+        onchange="showPDFName()">
+
+    <p id="pdfName"></p>
+
+    <button onclick="uploadPDF()">
+        Upload PDF
+    </button>
+
+</div>
+
+<!-- Bottom -->
 <div class="bottom">
 
     <input
         type="text"
         id="userInput"
         placeholder="कुछ पूछिए..."
-        autocomplete="off"
-    >
+        autocomplete="off">
 
     <button id="sendBtn" onclick="sendMessage()">
         ➤
@@ -80,6 +97,7 @@ Upload PDF
 <script src="ui.js"></script>
 <script src="history.js"></script>
 <script src="features.js"></script>
-    <script src="pdf.js"></script>
+<script src="pdf.js"></script>
+
 </body>
 </html>
