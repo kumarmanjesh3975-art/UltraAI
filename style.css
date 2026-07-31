@@ -1,33 +1,33 @@
 /* ===========================
-   UltraAI Style.css
+   UltraAI - style.css
 =========================== */
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
     background:#0F172A;
-    color:white;
+    color:#fff;
+    height:100vh;
     display:flex;
     flex-direction:column;
-    height:100vh;
 }
 
 /* Header */
 
 .header{
     text-align:center;
-    padding:20px;
+    padding:18px;
     background:#111827;
     border-bottom:1px solid #1E293B;
 }
 
 .header h1{
-    font-size:32px;
+    font-size:30px;
 }
 
 .header p{
@@ -40,17 +40,93 @@ body{
 .language{
     display:flex;
     justify-content:center;
-    margin:15px;
+    margin:12px;
 }
 
 #languageSelect{
     width:220px;
     padding:10px;
     border:none;
-    border-radius:12px;
+    outline:none;
+    border-radius:10px;
     background:#1E293B;
-    color:white;
-    font-size:16px;
+    color:#fff;
+    font-size:15px;
+}
+
+/* Voice Orb */
+
+#voiceCircle{
+    width:60px;
+    height:60px;
+    margin:15px auto;
+    border-radius:50%;
+    background:linear-gradient(135deg,#38BDF8,#0EA5E9);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    cursor:pointer;
+    color:#fff;
+    position:relative;
+    transition:.3s;
+    box-shadow:0 0 20px rgba(56,189,248,.7);
+}
+
+#voiceCircle:hover{
+    transform:scale(1.08);
+}
+
+#voiceCircle.listening{
+    animation:pulse 1.2s infinite;
+}
+
+#voiceCircle::before,
+#voiceCircle::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    border:2px solid rgba(56,189,248,.4);
+    animation:wave 2s infinite;
+}
+
+#voiceCircle::after{
+    animation-delay:1s;
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.15);
+        box-shadow:0 0 35px rgba(56,189,248,1);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+@keyframes wave{
+    0%{
+        transform:scale(1);
+        opacity:.8;
+    }
+    100%{
+        transform:scale(2.2);
+        opacity:0;
+    }
+}
+
+/* Status */
+
+#status{
+    text-align:center;
+    color:#7DD3FC;
+    margin:10px;
+    font-size:15px;
 }
 
 /* Chat */
@@ -62,11 +138,11 @@ body{
 }
 
 .message{
-    max-width:85%;
     padding:12px;
     margin:10px 0;
-    border-radius:15px;
-    word-wrap:break-word;
+    border-radius:16px;
+    max-width:85%;
+    word-break:break-word;
 }
 
 .user{
@@ -79,60 +155,13 @@ body{
     margin-right:auto;
 }
 
-/* Sky Blue Voice Orb */
-
-#voiceCircle{
-    width:90px;
-    height:90px;
-    border-radius:50%;
-    background:#38BDF8;
-    color:white;
-    font-size:36px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-    margin:20px auto;
-    box-shadow:0 0 20px #38BDF8;
-    transition:.3s;
-}
-
-#voiceCircle:hover{
-    transform:scale(1.08);
-}
-
-/* Voice Animation */
-
-#voiceCircle.listening{
-    animation:orbPulse 1.2s infinite;
-}
-
-@keyframes orbPulse{
-
-0%{
-transform:scale(1);
-box-shadow:0 0 20px #38BDF8;
-}
-
-50%{
-transform:scale(1.2);
-box-shadow:0 0 45px #7DD3FC;
-}
-
-100%{
-transform:scale(1);
-box-shadow:0 0 20px #38BDF8;
-}
-
-}
-
 /* Bottom */
 
 .bottom{
     display:flex;
-    align-items:center;
     gap:10px;
-    padding:15px;
+    align-items:center;
+    padding:12px;
     background:#111827;
 }
 
@@ -140,36 +169,48 @@ box-shadow:0 0 20px #38BDF8;
     flex:1;
     padding:14px;
     border:none;
+    outline:none;
     border-radius:25px;
     background:#1E293B;
-    color:white;
+    color:#fff;
     font-size:16px;
-    outline:none;
 }
 
 #sendBtn{
-    width:65px;
-    height:65px;
+    width:50px;
+    height:50px;
     border:none;
     border-radius:50%;
     background:#38BDF8;
-    color:white;
-    font-size:26px;
+    color:#fff;
+    font-size:20px;
     cursor:pointer;
-    transition:.3s;
 }
 
 #sendBtn:hover{
     transform:scale(1.08);
 }
 
-/* Status */
+/* Photo Box */
 
-#status{
+.photo-box,
+.premium-box{
+    background:#111827;
+    margin:12px;
+    padding:15px;
+    border-radius:12px;
     text-align:center;
-    color:#7DD3FC;
-    font-size:16px;
-    margin-bottom:10px;
+}
+
+.photo-box button,
+.premium-box button{
+    margin-top:10px;
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    background:#38BDF8;
+    color:white;
+    cursor:pointer;
 }
 
 /* Scrollbar */
@@ -180,83 +221,5 @@ box-shadow:0 0 20px #38BDF8;
 
 ::-webkit-scrollbar-thumb{
     background:#38BDF8;
-    border-radius:10px;
+    border-radius:20px;
 }
-
-::-webkit-scrollbar-track{
-    background:#111827;
-}
-/* ===========================
-   UltraAI Voice Wave Effect
-=========================== */
-
-#voiceCircle{
-    position:relative;
-    overflow:visible;
-}
-
-#voiceCircle::before,
-#voiceCircle::after{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:100%;
-    border-radius:50%;
-    border:3px solid rgba(56,189,248,0.5);
-    animation:wave 2s infinite;
-}
-
-#voiceCircle::after{
-    animation-delay:1s;
-}
-
-@keyframes wave{
-
-0%{
-    transform:scale(1);
-    opacity:0.8;
-}
-
-100%{
-    transform:scale(2.3);
-    opacity:0;
-}
-
-/* ===========================
-   UltraAI Voice Wave Effect
-=========================== */
-
-#voiceCircle{
-    position:relative;
-    overflow:visible;
-}
-
-#voiceCircle::before,
-#voiceCircle::after{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:100%;
-    border-radius:50%;
-    border:3px solid rgba(56,189,248,0.5);
-    animation:wave 2s infinite;
-}
-
-#voiceCircle::after{
-    animation-delay:1s;
-}
-
-@keyframes wave{
-
-0%{
-    transform:scale(1);
-    opacity:0.8;
-}
-
-100%{
-    transform:scale(2.3);
-    opacity:0;
-}
-
-}
-   
