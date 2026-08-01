@@ -146,3 +146,60 @@
 
 </body>
 </html>
+<!-- =========================
+     Photo Editor
+========================= -->
+<div class="photo-box">
+
+    <h2>🖼️ Photo Editor</h2>
+
+    <input
+        type="file"
+        id="imageUpload"
+        accept="image/*">
+
+    <button onclick="editPhoto()">
+        Edit Photo
+    </button>
+
+</div>
+
+<!-- =========================
+     PDF Chat
+========================= -->
+<div class="pdf-box">
+
+    <h2>📄 PDF Chat</h2>
+
+    <input
+        type="file"
+        id="pdfUpload"
+        accept=".pdf"
+        onchange="showPDFName()">
+
+    <p id="pdfName"></p>
+
+    <button onclick="uploadPDF()">
+        Upload PDF
+    </button>
+
+</div>
+
+<!-- =========================
+     Bottom Input
+========================= -->
+<div class="bottom">
+
+    <input
+        type="text"
+        id="userInput"
+        placeholder="कुछ पूछिए..."
+        autocomplete="off">
+
+    <button
+        id="sendBtn"
+        onclick="sendMessage()">
+        ➤
+    </button>
+
+</div>
