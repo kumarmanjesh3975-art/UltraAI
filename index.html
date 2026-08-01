@@ -1,215 +1,110 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 UltraAI</title>
 
-<title>🤖 UltraAI</title>
-
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- Header -->
-<header class="header">
-    <h1>🤖 UltraAI</h1>
-    <p>Smart AI Voice Assistant</p>
-</header>
+    <!-- Header -->
+    <header class="header">
+        <h1>🤖 UltraAI</h1>
+        <p>Smart AI Voice Assistant</p>
+    </header>
 
-<!-- Language -->
-<div class="language">
-    <select id="languageSelect">
-        <option value="hi-IN">🇮🇳 हिन्दी</option>
-        <option value="en-US">🇺🇸 English</option>
-        <option value="ur-PK">🇵🇰 اردو</option>
-        <option value="es-ES">🇪🇸 Español</option>
-        <option value="fr-FR">🇫🇷 Français</option>
-        <option value="de-DE">🇩🇪 Deutsch</option>
-        <option value="ja-JP">🇯🇵 日本語</option>
-        <option value="zh-CN">🇨🇳 中文</option>
-    </select>
-</div>
+    <!-- Language -->
+    <div class="language">
+        <select id="languageSelect">
+            <option value="hi-IN">🇮🇳 हिन्दी</option>
+            <option value="en-US">🇺🇸 English</option>
+            <option value="ur-PK">🇵🇰 اردو</option>
+            <option value="es-ES">🇪🇸 Español</option>
+            <option value="fr-FR">🇫🇷 Français</option>
+            <option value="de-DE">🇩🇪 Deutsch</option>
+            <option value="ja-JP">🇯🇵 日本語</option>
+            <option value="zh-CN">🇨🇳 中文</option>
+        </select>
+    </div>
 
-<!-- Status -->
-<div id="status">
-    🟢 UltraAI Ready
-</div>
+    <!-- Status -->
+    <div id="status">
+        🟢 UltraAI Ready
+    </div>
 
-<!-- Voice Orb -->
-<div id="voiceCircle" onclick="startVoiceMode()">
-    🎤
-</div>
+    <!-- Voice Orb -->
+    <div id="voiceCircle" onclick="startVoiceMode()">
+        🎤
+    </div>
 
-<!-- Chat -->
-<div id="chat" class="chat"></div>
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Chat -->
+    <div id="chat" class="chat"></div>
 
-<title>🤖 UltraAI</title>
+    <!-- Photo Editor -->
+    <div class="photo-box">
 
-<link rel="stylesheet" href="style.css">
-</head>
+        <h2>🖼️ UltraAI Photo Editor</h2>
 
-<body>
+        <input
+            type="file"
+            id="imageUpload"
+            accept="image/*">
 
-<header class="header">
-    <h1>🤖 UltraAI</h1>
-    <p>Smart AI Voice Assistant</p>
-</header>
+        <button onclick="editPhoto()">
+            ✨ Edit Photo
+        </button>
 
-<!-- Language -->
-<div class="language">
-    <select id="languageSelect">
-        <option value="hi-IN">🇮🇳 हिन्दी</option>
-        <option value="en-US">🇺🇸 English</option>
-        <option value="ur-PK">🇵🇰 اردو</option>
-        <option value="es-ES">🇪🇸 Español</option>
-        <option value="fr-FR">🇫🇷 Français</option>
-        <option value="de-DE">🇩🇪 Deutsch</option>
-        <option value="ja-JP">🇯🇵 日本語</option>
-        <option value="zh-CN">🇨🇳 中文</option>
-    </select>
-</div>
+    </div>
 
-<!-- Voice Status -->
-<div id="status"></div>
+    <!-- PDF Chat -->
+    <div class="pdf-box">
 
-<!-- Voice Orb -->
-<div id="voiceCircle" onclick="startVoiceMode()">
-    🎤
-</div>
+        <h2>📄 PDF Chat</h2>
 
-<!-- Chat -->
-<div id="chat" class="chat"></div>
+        <input
+            type="file"
+            id="pdfUpload"
+            accept=".pdf"
+            onchange="showPDFName()">
 
-<!-- Photo Upload -->
-<div class="photo-box">
+        <p id="pdfName"></p>
 
-    <h2>🖼️ Photo Editor</h2>
+        <button onclick="uploadPDF()">
+            Upload PDF
+        </button>
 
-    <input
-        type="file"
-        id="imageUpload"
-        accept="image/*">
+    </div>
 
-    <button onclick="editPhoto()">
-        Edit Photo
-    </button>
+    <!-- Bottom -->
+    <div class="bottom">
 
-</div>
+        <input
+            type="text"
+            id="userInput"
+            placeholder="कुछ पूछिए..."
+            autocomplete="off">
 
-<!-- PDF Upload -->
-<div class="pdf-box">
+        <button
+            id="sendBtn"
+            onclick="sendMessage()">
+            ➤
+        </button>
 
-    <h2>📄 PDF Chat</h2>
+    </div>
 
-    <input
-        type="file"
-        id="pdfUpload"
-        accept=".pdf"
-        onchange="showPDFName()">
-
-    <p id="pdfName"></p>
-
-    <button onclick="uploadPDF()">
-        Upload PDF
-    </button>
-
-</div>
-
-<!-- Bottom -->
-<div class="bottom">
-
-    <input
-        type="text"
-        id="userInput"
-        placeholder="कुछ पूछिए..."
-        autocomplete="off">
-
-    <button id="sendBtn" onclick="sendMessage()">
-        ➤
-    </button>
-
-</div>
-
-<!-- JavaScript -->
-<script src="script.js"></script>
-<script src="speech.js"></script>
-<script src="ui.js"></script>
-<script src="history.js"></script>
-<script src="features.js"></script>
-<script src="pdf.js"></script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="speech.js"></script>
+    <script src="ui.js"></script>
+    <script src="history.js"></script>
+    <script src="features.js"></script>
+    <script src="pdf.js"></script>
+    <script src="photo.js"></script>
 
 </body>
-</html>
-<!-- =========================
-     Photo Editor
-========================= -->
-<div class="photo-box">
 
-    <h2>🖼️ Photo Editor</h2>
-
-    <input
-        type="file"
-        id="imageUpload"
-        accept="image/*">
-
-    <button onclick="editPhoto()">
-        Edit Photo
-    </button>
-
-</div>
-
-<!-- =========================
-     PDF Chat
-========================= -->
-<div class="pdf-box">
-
-    <h2>📄 PDF Chat</h2>
-
-    <input
-        type="file"
-        id="pdfUpload"
-        accept=".pdf"
-        onchange="showPDFName()">
-
-    <p id="pdfName"></p>
-
-    <button onclick="uploadPDF()">
-        Upload PDF
-    </button>
-
-</div>
-
-<!-- =========================
-     Bottom Input
-========================= -->
-<div class="bottom">
-
-    <input
-        type="text"
-        id="userInput"
-        placeholder="कुछ पूछिए..."
-        autocomplete="off">
-
-    <button
-        id="sendBtn"
-        onclick="sendMessage()">
-        ➤
-    </button>
-
-</div>
-<!-- JavaScript Files -->
-<script src="script.js"></script>
-<script src="speech.js"></script>
-<script src="ui.js"></script>
-<script src="history.js"></script>
-<script src="features.js"></script>
-<script src="pdf.js"></script>
-<script src="photo.js"></script>
-</body>
 </html>
