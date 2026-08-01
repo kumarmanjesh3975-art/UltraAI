@@ -4,37 +4,27 @@
 
 console.log("📄 PDF Module Loaded");
 
-// PDF Upload
-function uploadPDF() {
+function showPDFName() {
+    const file = document.getElementById("pdfUpload").files[0];
+    const name = document.getElementById("pdfName");
 
-    const pdf = document.getElementById("pdfUpload");
-
-    if (!pdf) {
-        alert("PDF Upload Box नहीं मिला।");
-        return;
+    if (file) {
+        name.innerText = "📄 " + file.name;
+    } else {
+        name.innerText = "";
     }
-
-    if (pdf.files.length === 0) {
-        alert("पहले PDF चुनें।");
-        return;
-    }
-
-    const file = pdf.files[0];
-
-    alert("📄 PDF Selected: " + file.name);
-
 }
 
-// PDF Name
-function showPDFName() {
+function uploadPDF() {
+    const file = document.getElementById("pdfUpload").files[0];
 
-    const pdf = document.getElementById("pdfUpload");
-
-    if (pdf.files.length > 0) {
-
-        document.getElementById("pdfName").innerText =
-            "📄 " + pdf.files[0].name;
-
+    if (!file) {
+        alert("❌ पहले PDF चुनें।");
+        return;
     }
 
+    alert("✅ PDF Upload: " + file.name);
+
+    addMessage("📄 PDF Upload: " + file.name, "user");
+    addMessage("🤖 जल्द ही मैं इस PDF को पढ़कर आपके सवालों के जवाब दूँगा।", "ai");
 }
