@@ -107,3 +107,30 @@
 </body>
 
 </html>
+<div class="bottom">
+
+    <!-- Plus Button -->
+    <button id="plusBtn" onclick="document.getElementById('mediaUpload').click()">
+        +
+    </button>
+
+    <!-- Hidden File Input -->
+    <input
+        type="file"
+        id="mediaUpload"
+        accept="image/*,video/*"
+        style="display:none;">
+
+    <!-- Text Input -->
+    <input
+        type="text"
+        id="userInput"
+        placeholder="कुछ पूछिए..."
+        autocomplete="off">
+
+    <!-- Send Button -->
+    <button id="sendBtn" onclick="sendMessage()">
+        ➤
+    </button>
+
+</div>
