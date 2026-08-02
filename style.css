@@ -285,3 +285,20 @@ body{
         font-size:20px;
     }
 }
+/* Plus Button */
+
+#plusBtn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:#1E293B;
+    color:#fff;
+    font-size:30px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#plusBtn:hover{
+    background:#38BDF8;
+}
