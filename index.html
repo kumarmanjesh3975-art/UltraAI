@@ -36,7 +36,7 @@
         🟢 UltraAI Ready
     </div>
 
-    <!-- Voice Orb -->
+    <!-- Voice -->
     <div id="voiceCircle" onclick="startVoiceMode()">
         🎤
     </div>
@@ -74,7 +74,7 @@
         <p id="pdfName"></p>
 
         <button onclick="uploadPDF()">
-            Upload PDF
+            📤 Upload PDF
         </button>
 
     </div>
@@ -82,29 +82,34 @@
     <!-- Bottom -->
     <div class="bottom">
 
-    <button id="plusBtn" onclick="document.getElementById('mediaUpload').click()">
-        +
-    </button>
+        <!-- Plus Button -->
+        <button id="plusBtn"
+            onclick="document.getElementById('mediaUpload').click()">
+            +
+        </button>
 
-    <input
-        type="file"
-        id="mediaUpload"
-        accept="image/*,video/*,.pdf"
-        style="display:none;">
+        <!-- Hidden Media Upload -->
+        <input
+            type="file"
+            id="mediaUpload"
+            accept="image/*,video/*,.pdf"
+            style="display:none;">
 
-    <input
-        type="text"
-        id="userInput"
-        placeholder="कुछ पूछिए..."
-        autocomplete="off">
+        <!-- User Input -->
+        <input
+            type="text"
+            id="userInput"
+            placeholder="कुछ पूछिए..."
+            autocomplete="off">
 
-    <button
-        id="sendBtn"
-        onclick="sendMessage()">
-        ➤
-    </button>
+        <!-- Send -->
+        <button
+            id="sendBtn"
+            onclick="sendMessage()">
+            ➤
+        </button>
 
-</div>
+    </div>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
@@ -117,30 +122,3 @@
 </body>
 
 </html>
-<div class="bottom">
-
-    <!-- Plus Button -->
-    <button id="plusBtn" onclick="document.getElementById('mediaUpload').click()">
-        +
-    </button>
-
-    <!-- Hidden File Input -->
-    <input
-        type="file"
-        id="mediaUpload"
-        accept="image/*,video/*"
-        style="display:none;">
-
-    <!-- Text Input -->
-    <input
-        type="text"
-        id="userInput"
-        placeholder="कुछ पूछिए..."
-        autocomplete="off">
-
-    <!-- Send Button -->
-    <button id="sendBtn" onclick="sendMessage()">
-        ➤
-    </button>
-
-</div>
