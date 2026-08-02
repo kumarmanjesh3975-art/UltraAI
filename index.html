@@ -36,66 +36,14 @@
         🟢 UltraAI Ready
     </div>
 
-    <!-- Voice -->
+    <!-- Voice Orb -->
     <div id="voiceCircle" onclick="startVoiceMode()">
         🎤
     </div>
 
-    <!-- Chat -->
+    <!-- Chat Area -->
     <div id="chat" class="chat"></div>
-
-    <!-- Photo Editor -->
-    <div class="photo-box">
-
-        <h2>🖼️ UltraAI Photo Editor</h2>
-
-        <input
-            type="file"
-            id="imageUpload"
-            accept="image/*">
-
-        <button onclick="editPhoto()">
-            ✨ Edit Photo
-        </button>
-
-    </div>
-
-    <!-- PDF Chat -->
-    <div class="pdf-box">
-
-        <h2>📄 PDF Chat</h2>
-
-        <input
-            type="file"
-            id="pdfUpload"
-            accept=".pdf"
-            onchange="showPDFName()">
-
-        <p id="pdfName"></p>
-
-        <button onclick="uploadPDF()">
-            📤 Upload PDF
-        </button>
-
-    </div>
-
-    <!-- Bottom -->
-    <div class="bottom">
-
-        <!-- Plus Button -->
-        <button id="plusBtn"
-            onclick="document.getElementById('mediaUpload').click()">
-            +
-        </button>
-
-        <!-- Hidden Media Upload -->
-        <input
-            type="file"
-            id="mediaUpload"
-            accept="image/*,video/*,.pdf"
-            style="display:none;">
-
-        <!-- Bottom -->
+    <!-- Bottom Bar -->
 <div class="bottom">
 
     <!-- Plus Button -->
@@ -103,8 +51,8 @@
         +
     </button>
 
-    <!-- Hidden Upload Menu -->
-    <div id="uploadMenu" class="upload-menu">
+    <!-- Upload Menu -->
+    <div id="uploadMenu" class="upload-menu" style="display:none;">
 
         <button onclick="document.getElementById('imageUpload').click()">
             🖼️ Photo
@@ -120,31 +68,43 @@
 
     </div>
 
-    <!-- Hidden Inputs -->
+    <!-- Hidden File Inputs -->
     <input type="file" id="imageUpload" accept="image/*" hidden>
     <input type="file" id="videoUpload" accept="video/*" hidden>
     <input type="file" id="pdfUpload" accept=".pdf" hidden>
 
+    <!-- Text Input -->
     <input
         type="text"
         id="userInput"
         placeholder="कुछ पूछिए..."
         autocomplete="off">
 
+    <!-- Send Button -->
     <button id="sendBtn" onclick="sendMessage()">
         ➤
     </button>
 
 </div>
+<!-- JavaScript -->
+<script src="script.js"></script>
+<script src="speech.js"></script>
+<script src="ui.js"></script>
+<script src="features.js"></script>
+<script src="pdf.js"></script>
+<script src="photo.js"></script>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
-    <script src="speech.js"></script>
-    <script src="ui.js"></script>
-    <script src="features.js"></script>
-    <script src="pdf.js"></script>
-    <script src="photo.js"></script>
+<script>
+function toggleMenu() {
+    const menu = document.getElementById("uploadMenu");
+
+    if (menu.style.display === "block") {
+        menu.style.display = "none";
+    } else {
+        menu.style.display = "block";
+    }
+}
+</script>
 
 </body>
-
 </html>
