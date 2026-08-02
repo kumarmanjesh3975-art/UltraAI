@@ -82,19 +82,29 @@
     <!-- Bottom -->
     <div class="bottom">
 
-        <input
-            type="text"
-            id="userInput"
-            placeholder="कुछ पूछिए..."
-            autocomplete="off">
+    <button id="plusBtn" onclick="document.getElementById('mediaUpload').click()">
+        +
+    </button>
 
-        <button
-            id="sendBtn"
-            onclick="sendMessage()">
-            ➤
-        </button>
+    <input
+        type="file"
+        id="mediaUpload"
+        accept="image/*,video/*,.pdf"
+        style="display:none;">
 
-    </div>
+    <input
+        type="text"
+        id="userInput"
+        placeholder="कुछ पूछिए..."
+        autocomplete="off">
+
+    <button
+        id="sendBtn"
+        onclick="sendMessage()">
+        ➤
+    </button>
+
+</div>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
