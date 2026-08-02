@@ -127,3 +127,92 @@ body{
     background:#111827;
     z-index:999;
 }
+
+/* ===========================
+   Bottom Bar
+=========================== */
+
+.bottom{
+    position:sticky;
+    bottom:0;
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px;
+    background:#111827;
+    border-top:1px solid #1E293B;
+    z-index:999;
+}
+
+#userInput{
+    flex:1;
+    padding:14px 18px;
+    border:none;
+    outline:none;
+    border-radius:30px;
+    background:#1E293B;
+    color:#fff;
+    font-size:16px;
+}
+
+#sendBtn{
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:#35B8FF;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#sendBtn:hover{
+    transform:scale(1.08);
+    background:#0099FF;
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+::-webkit-scrollbar{
+    width:6px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#35B8FF;
+    border-radius:10px;
+}
+
+/* ===========================
+   Mobile Responsive
+=========================== */
+
+@media (max-width:600px){
+
+    .header h1{
+        font-size:28px;
+    }
+
+    .header p{
+        font-size:14px;
+    }
+
+    #voiceCircle{
+        width:80px;
+        height:80px;
+        font-size:30px;
+    }
+
+    .photo-box h2,
+    .pdf-box h2{
+        font-size:22px;
+    }
+
+    #sendBtn{
+        width:55px;
+        height:55px;
+    }
+}
