@@ -302,3 +302,57 @@ body{
 #plusBtn:hover{
     background:#38BDF8;
 }
+/* Bottom Bar */
+
+.bottom{
+    position:sticky;
+    bottom:0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px;
+    background:#111827;
+}
+
+/* Plus Button */
+
+#plusBtn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:#1E293B;
+    color:#fff;
+    font-size:30px;
+    cursor:pointer;
+}
+
+#plusBtn:hover{
+    background:#38BDF8;
+}
+
+/* Input */
+
+#userInput{
+    flex:1;
+    height:50px;
+    border:none;
+    outline:none;
+    border-radius:25px;
+    padding:0 18px;
+    background:#1E293B;
+    color:#fff;
+}
+
+/* Send */
+
+#sendBtn{
+    width:55px;
+    height:55px;
+    border:none;
+    border-radius:50%;
+    background:#38BDF8;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+}
