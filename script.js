@@ -164,3 +164,12 @@ input.addEventListener("keydown", function(e){
     }
 
 });
+function toggleMenu() {
+    const menu = document.getElementById("uploadMenu");
+
+    if (menu.style.display === "flex") {
+        menu.style.display = "none";
+    } else {
+        menu.style.display = "flex";
+    }
+}
