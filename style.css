@@ -356,3 +356,36 @@ body{
     font-size:22px;
     cursor:pointer;
 }
+.upload-menu{
+    display:none;
+    position:absolute;
+    bottom:75px;
+    left:15px;
+    flex-direction:column;
+    gap:10px;
+    background:#1e293b;
+    padding:10px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,.4);
+}
+
+.upload-menu button{
+    background:#38bdf8;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:10px 16px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+#plusBtn{
+    width:55px;
+    height:55px;
+    border:none;
+    border-radius:50%;
+    background:#38bdf8;
+    color:#fff;
+    font-size:30px;
+    cursor:pointer;
+}
