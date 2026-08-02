@@ -95,21 +95,47 @@
             accept="image/*,video/*,.pdf"
             style="display:none;">
 
-        <!-- User Input -->
-        <input
-            type="text"
-            id="userInput"
-            placeholder="कुछ पूछिए..."
-            autocomplete="off">
+        <!-- Bottom -->
+<div class="bottom">
 
-        <!-- Send -->
-        <button
-            id="sendBtn"
-            onclick="sendMessage()">
-            ➤
+    <!-- Plus Button -->
+    <button id="plusBtn" onclick="toggleMenu()">
+        +
+    </button>
+
+    <!-- Hidden Upload Menu -->
+    <div id="uploadMenu" class="upload-menu">
+
+        <button onclick="document.getElementById('imageUpload').click()">
+            🖼️ Photo
+        </button>
+
+        <button onclick="document.getElementById('videoUpload').click()">
+            🎥 Video
+        </button>
+
+        <button onclick="document.getElementById('pdfUpload').click()">
+            📄 PDF
         </button>
 
     </div>
+
+    <!-- Hidden Inputs -->
+    <input type="file" id="imageUpload" accept="image/*" hidden>
+    <input type="file" id="videoUpload" accept="video/*" hidden>
+    <input type="file" id="pdfUpload" accept=".pdf" hidden>
+
+    <input
+        type="text"
+        id="userInput"
+        placeholder="कुछ पूछिए..."
+        autocomplete="off">
+
+    <button id="sendBtn" onclick="sendMessage()">
+        ➤
+    </button>
+
+</div>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
