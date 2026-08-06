@@ -1,110 +1,82 @@
 <!DOCTYPE html>
 <html lang="hi">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🤖 UltraAI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>UltraAI</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header class="header">
-        <h1>🤖 UltraAI</h1>
-        <p>Smart AI Voice Assistant</p>
-    </header>
+<header class="header">
+<h1>🤖 UltraAI</h1>
+<p>Smart AI Assistant</p>
+</header>
 
-    <!-- Language -->
-    <div class="language">
-        <select id="languageSelect">
-            <option value="hi-IN">🇮🇳 हिन्दी</option>
-            <option value="en-US">🇺🇸 English</option>
-            <option value="ur-PK">🇵🇰 اردو</option>
-            <option value="es-ES">🇪🇸 Español</option>
-            <option value="fr-FR">🇫🇷 Français</option>
-            <option value="de-DE">🇩🇪 Deutsch</option>
-            <option value="ja-JP">🇯🇵 日本語</option>
-            <option value="zh-CN">🇨🇳 中文</option>
-        </select>
-    </div>
+<div class="language">
+<select id="languageSelect">
+<option value="hi-IN">🇮🇳 हिन्दी</option>
+<option value="en-US">🇺🇸 English</option>
+<option value="ur-PK">🇵🇰 اردو</option>
+</select>
+</div>
 
-    <!-- Status -->
-    <div id="status">
-        🟢 UltraAI Ready
-    </div>
+<div id="status">
+🟢 UltraAI Ready
+</div>
 
-    <!-- Voice Orb -->
-    <div id="voiceCircle" onclick="startVoiceMode()">
-        🎤
-    </div>
+<div id="voiceCircle" onclick="startVoiceMode()">
+🎤
+</div>
 
-    <!-- Chat Area -->
-    <div id="chat" class="chat"></div>
-    <!-- Bottom Bar -->
+<div id="chat" class="chat"></div>
+
 <div class="bottom">
 
-    <!-- Plus Button -->
-    <button id="plusBtn" onclick="toggleMenu()">
-        +
-    </button>
+<button id="plusBtn" onclick="toggleMenu()">
++
+</button>
 
-    <!-- Upload Menu -->
-    <div id="uploadMenu" class="upload-menu" style="display:none;">
+<div id="uploadMenu" class="upload-menu">
 
-        <button onclick="document.getElementById('imageUpload').click()">
-            🖼️ Photo
-        </button>
+<button onclick="document.getElementById('imageUpload').click()">
+🖼️ Photo
+</button>
 
-        <button onclick="document.getElementById('videoUpload').click()">
-            🎥 Video
-        </button>
+<button onclick="document.getElementById('videoUpload').click()">
+🎥 Video
+</button>
 
-        <button onclick="document.getElementById('pdfUpload').click()">
-            📄 PDF
-        </button>
-
-    </div>
-
-    <!-- Hidden File Inputs -->
-    <input type="file" id="imageUpload" accept="image/*" hidden>
-    <input type="file" id="videoUpload" accept="video/*" hidden>
-    <input type="file" id="pdfUpload" accept=".pdf" hidden>
-
-    <!-- Text Input -->
-    <input
-        type="text"
-        id="userInput"
-        placeholder="कुछ पूछिए..."
-        autocomplete="off">
-
-    <!-- Send Button -->
-    <button id="sendBtn" onclick="sendMessage()">
-        ➤
-    </button>
+<button onclick="document.getElementById('pdfUpload').click()">
+📄 PDF
+</button>
 
 </div>
-<!-- JavaScript -->
+
+<input type="file" id="imageUpload" accept="image/*" hidden>
+
+<input type="file" id="videoUpload" accept="video/*" hidden>
+
+<input type="file" id="pdfUpload" accept=".pdf" hidden>
+
+<input
+id="userInput"
+type="text"
+placeholder="कुछ पूछिए...">
+
+<button id="sendBtn" onclick="sendMessage()">
+➤
+</button>
+
+</div>
+
 <script src="script.js"></script>
 <script src="speech.js"></script>
-<script src="ui.js"></script>
-<script src="features.js"></script>
-<script src="pdf.js"></script>
 <script src="photo.js"></script>
-
-<script>
-function toggleMenu() {
-    const menu = document.getElementById("uploadMenu");
-
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-    } else {
-        menu.style.display = "block";
-    }
-}
-</script>
+<script src="pdf.js"></script>
 
 </body>
 </html>
