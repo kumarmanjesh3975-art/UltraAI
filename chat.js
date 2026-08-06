@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer YOUR_OPENAI_API_KEY",
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -31,11 +31,11 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    res.status(200).json(data);
+    return res.status(response.status).json(data);
 
-  } catch (err) {
-    res.status(500).json({
-      error: err.message
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message
     });
   }
 }
