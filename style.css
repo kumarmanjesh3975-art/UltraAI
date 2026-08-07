@@ -1,5 +1,5 @@
 /* ===========================
-   UltraAI - style.css
+   UltraAI Final CSS - Part 1
 =========================== */
 
 *{
@@ -20,20 +20,19 @@ body{
 /* Header */
 
 .header{
-    text-align:center;
-    padding:18px;
     background:#111827;
+    padding:18px;
+    text-align:center;
     border-bottom:1px solid #1E293B;
 }
 
 .header h1{
-    font-size:32px;
-    margin-bottom:6px;
+    font-size:30px;
 }
 
 .header p{
     color:#94A3B8;
-    font-size:15px;
+    margin-top:5px;
 }
 
 /* Language */
@@ -41,97 +40,141 @@ body{
 .language{
     display:flex;
     justify-content:center;
-    padding:15px;
+    padding:12px;
 }
 
 #languageSelect{
     width:90%;
     max-width:420px;
-    padding:14px;
+    padding:12px;
     border:none;
-    border-radius:14px;
+    border-radius:12px;
     background:#1E293B;
     color:#fff;
-    font-size:17px;
-    outline:none;
 }
 
 /* Status */
 
 #status{
     text-align:center;
-    color:#7DD3FC;
-    font-size:18px;
-    margin-top:5px;
+    color:#38BDF8;
+    margin-top:10px;
 }
 
 /* Voice Circle */
 
 #voiceCircle{
-    width:120px;
-    height:120px;
+    width:110px;
+    height:110px;
     margin:20px auto;
     border-radius:50%;
     background:linear-gradient(135deg,#38BDF8,#0EA5E9);
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:55px;
+    font-size:45px;
     cursor:pointer;
-    color:#fff;
-    box-shadow:0 0 35px rgba(56,189,248,.8);
-    transition:.3s;
+    box-shadow:0 0 30px rgba(56,189,248,.5);
 }
 
-#voiceCircle:hover{
-    transform:scale(1.08);
-}
-
-#voiceCircle.listening{
-    animation:pulse 1.2s infinite;
-}
-
-@keyframes pulse{
-    0%{transform:scale(1);}
-    50%{
-        transform:scale(1.12);
-        box-shadow:0 0 45px #38BDF8;
-    }
-    100%{transform:scale(1);}
-}
-/* ===========================
-   Chat Area
-=========================== */
+/* Chat */
 
 .chat{
     flex:1;
     overflow-y:auto;
     padding:15px;
-    display:flex;
-    flex-direction:column;
+    padding-bottom:90px;
 }
 
 .message{
-    max-width:85%;
-    padding:12px 16px;
+    max-width:80%;
+    padding:12px;
     margin:8px 0;
-    border-radius:16px;
-    word-wrap:break-word;
-    font-size:16px;
+    border-radius:15px;
+    word-break:break-word;
 }
 
 .user{
     background:#2563EB;
-    align-self:flex-end;
+    margin-left:auto;
 }
 
 .ai{
     background:#1E293B;
-    align-self:flex-start;
+}
+
+/* Bottom */
+
+.bottom{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+    background:#111827;
+    border-top:1px solid #1E293B;
+    z-index:999;
+}
+
+#plusBtn,
+#sendBtn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:#38BDF8;
+    color:white;
+    font-size:24px;
+    cursor:pointer;
+}
+
+#userInput{
+    flex:1;
+    height:50px;
+    border:none;
+    outline:none;
+    border-radius:25px;
+    padding:0 15px;
+    background:#1E293B;
+    color:white;
+    font-size:16px;
+}/* ===========================
+   Upload Menu
+=========================== */
+
+.upload-menu{
+    position:absolute;
+    bottom:70px;
+    left:10px;
+    display:none;
+    flex-direction:column;
+    gap:8px;
+    background:#1E293B;
+    border-radius:15px;
+    padding:10px;
+    box-shadow:0 0 20px rgba(0,0,0,.4);
+}
+
+.upload-menu button{
+    border:none;
+    background:#334155;
+    color:#fff;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    text-align:left;
+    transition:.3s;
+}
+
+.upload-menu button:hover{
+    background:#38BDF8;
 }
 
 /* ===========================
-   Photo Editor & PDF Chat
+   Photo & PDF Box
 =========================== */
 
 .photo-box,
@@ -142,97 +185,29 @@ body{
     padding:20px;
     background:#1E293B;
     border-radius:18px;
-    border:1px solid #2E4C73;
-    box-shadow:0 0 20px rgba(56,189,248,.15);
+    border:1px solid #334155;
 }
 
 .photo-box h2,
 .pdf-box h2{
     text-align:center;
-    font-size:26px;
-    margin-bottom:20px;
-}
-
-.photo-box input,
-.pdf-box input{
-    width:100%;
-    padding:12px;
-    border:2px dashed #38BDF8;
-    border-radius:12px;
-    background:#0F172A;
-    color:#fff;
     margin-bottom:15px;
 }
 
 .photo-box button,
 .pdf-box button{
     width:100%;
-    padding:15px;
+    padding:12px;
     border:none;
-    border-radius:12px;
+    border-radius:10px;
     background:#38BDF8;
     color:#fff;
-    font-size:18px;
-    font-weight:bold;
     cursor:pointer;
-    transition:.3s;
+    font-size:16px;
 }
 
 .photo-box button:hover,
 .pdf-box button:hover{
-    background:#0EA5E9;
-}
-
-#pdfName{
-    color:#7DD3FC;
-    text-align:center;
-    margin-bottom:12px;
-}
-/* ===========================
-   Bottom Bar
-=========================== */
-
-.bottom{
-    position:sticky;
-    bottom:0;
-    width:100%;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:12px;
-    background:#111827;
-    border-top:1px solid #1E293B;
-}
-
-#userInput{
-    flex:1;
-    padding:14px 18px;
-    border:none;
-    outline:none;
-    border-radius:30px;
-    background:#1E293B;
-    color:#fff;
-    font-size:16px;
-}
-
-#userInput::placeholder{
-    color:#94A3B8;
-}
-
-#sendBtn{
-    width:56px;
-    height:56px;
-    border:none;
-    border-radius:50%;
-    background:#38BDF8;
-    color:#fff;
-    font-size:22px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-#sendBtn:hover{
-    transform:scale(1.08);
     background:#0EA5E9;
 }
 
@@ -250,297 +225,50 @@ body{
 }
 
 /* ===========================
-   Mobile Responsive
+   Animation
 =========================== */
 
-@media (max-width:600px){
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.08);
+        box-shadow:0 0 35px #38BDF8;
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+#voiceCircle.listening{
+    animation:pulse 1.2s infinite;
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media(max-width:600px){
 
     .header h1{
-        font-size:28px;
-    }
-
-    .header p{
-        font-size:14px;
+        font-size:26px;
     }
 
     #voiceCircle{
         width:90px;
         height:90px;
-        font-size:42px;
+        font-size:38px;
     }
 
-    .photo-box,
-    .pdf-box{
-        width:95%;
-    }
-
-    .photo-box h2,
-    .pdf-box h2{
-        font-size:22px;
-    }
-
+    #plusBtn,
     #sendBtn{
-        width:52px;
-        height:52px;
-        font-size:20px;
+        width:45px;
+        height:45px;
     }
-}
-/* Plus Button */
 
-#plusBtn{
-    width:50px;
-    height:50px;
-    border:none;
-    border-radius:50%;
-    background:#1E293B;
-    color:#fff;
-    font-size:30px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-#plusBtn:hover{
-    background:#38BDF8;
-}
-/* Bottom Bar */
-
-.bottom{
-    position:sticky;
-    bottom:0;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:12px;
-    background:#111827;
-}
-
-/* Bottom Bar */
-
-.bottom{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:12px;
-    background:#111827;
-    border-top:1px solid #1E293B;
-    z-index:1000;
-}
-
-#plusBtn{
-    width:50px;
-    height:50px;
-    border:none;
-    border-radius:50%;
-    background:#38BDF8;
-    color:#fff;
-    font-size:30px;
-    cursor:pointer;
-}
-
-#userInput{
-    flex:1;
-    height:50px;
-    border:none;
-    outline:none;
-    border-radius:25px;
-    padding:0 16px;
-    background:#1E293B;
-    color:#fff;
-    font-size:16px;
-}
-
-#sendBtn{
-    width:50px;
-    height:50px;
-    border:none;
-    border-radius:50%;
-    background:#38BDF8;
-    color:#fff;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.upload-menu{
-    position:absolute;
-    bottom:70px;
-    left:10px;
-    display:none;
-    flex-direction:column;
-    background:#1E293B;
-    border-radius:15px;
-    padding:10px;
-    box-shadow:0 0 15px rgba(0,0,0,.4);
-}
-
-.upload-menu button{
-    border:none;
-    background:none;
-    color:#fff;
-    padding:10px;
-    text-align:left;
-    cursor:pointer;
-    border-radius:8px;
-}
-
-.upload-menu button:hover{
-    background:#334155;
-}
-
-#plusBtn{
-    width:50px;
-    height:50px;
-    border:none;
-    border-radius:50%;
-    background:#1E293B;
-    color:#fff;
-    font-size:30px;
-    cursor:pointer;
-}
-
-#plusBtn:hover{
-    background:#38BDF8;
-}
-
-/* Input */
-
-#userInput{
-    flex:1;
-    height:50px;
-    border:none;
-    outline:none;
-    border-radius:25px;
-    padding:0 18px;
-    background:#1E293B;
-    color:#fff;
-}
-
-/* Send */
-
-#sendBtn{
-    width:55px;
-    height:55px;
-    border:none;
-    border-radius:50%;
-    background:#38BDF8;
-    color:#fff;
-    font-size:22px;
-    cursor:pointer;
-}
-.upload-menu{
-    display:none;
-    position:absolute;
-    bottom:75px;
-    left:15px;
-    flex-direction:column;
-    gap:10px;
-    background:#1e293b;
-    padding:10px;
-    border-radius:15px;
-    box-shadow:0 0 20px rgba(0,0,0,.4);
-}
-
-.upload-menu button{
-    background:#38bdf8;
-    color:white;
-    border:none;
-    border-radius:10px;
-    padding:10px 16px;
-    cursor:pointer;
-    font-size:16px;
-}
-
-#plusBtn{
-    width:55px;
-    height:55px;
-    border:none;
-    border-radius:50%;
-    background:#38bdf8;
-    color:#fff;
-    font-size:30px;
-    cursor:pointer;
-}
-/* ===========================
-   Upload Menu
-=========================== */
-
-.bottom{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:12px;
-    background:#111827;
-    border-top:1px solid #1E293B;
-    z-index:1000;
-}
-
-#plusBtn{
-    width:50px;
-    height:50px;
-    border:none;
-    border-radius:50%;
-    background:#38BDF8;
-    color:#fff;
-    font-size:30px;
-    cursor:pointer;
-}
-
-#plusBtn:hover{
-    background:#0EA5E9;
-}
-
-#userInput{
-    flex:1;
-    height:50px;
-    border:none;
-    outline:none;
-    border-radius:25px;
-    padding:0 16px;
-    background:#1E293B;
-    color:#fff;
-    font-size:16px;
-}
-
-#sendBtn{
-    width:50px;
-    height:50px;
-    border:none;
-    border-radius:50%;
-    background:#38BDF8;
-    color:#fff;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.upload-menu{
-    position:absolute;
-    bottom:70px;
-    left:10px;
-    display:none;
-    flex-direction:column;
-    background:#1E293B;
-    border-radius:15px;
-    padding:10px;
-    box-shadow:0 0 15px rgba(0,0,0,.4);
-}
-
-.upload-menu button{
-    border:none;
-    background:none;
-    color:#fff;
-    padding:10px;
-    text-align:left;
-    cursor:pointer;
-    border-radius:8px;
-}
-
-.upload-menu button:hover{
-    background:#334155;
+    #userInput{
+        height:45px;
+        font-size:15px;
+    }
 }
