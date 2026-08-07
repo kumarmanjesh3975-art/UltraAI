@@ -1,35 +1,28 @@
-
-
 // ===============================
-// UltraAI - script.js (Part 1)
+// UltraAI - script.js Part 1
 // ===============================
 
-// ===== API =====
-const API_KEY = 
-    "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";
-
-const MODEL = "openai/gpt-4.1-mini";
-
-// ===== Elements =====
+// Elements
 const chat = document.getElementById("chat");
 const input = document.getElementById("userInput");
 
-// ===== Add Message =====
+// Add Message
 function addMessage(text, sender) {
 
     const div = document.createElement("div");
 
     div.className = "message " + sender;
 
-    div.innerHTML = text;
+    div.textContent = text;
 
     chat.appendChild(div);
 
+    // Auto Scroll
     chat.scrollTop = chat.scrollHeight;
 }
 
-// ===== Thinking =====
-function showThinking() {
+// Thinking Message
+function showThinking(){
 
     const div = document.createElement("div");
 
@@ -37,139 +30,254 @@ function showThinking() {
 
     div.id = "thinking";
 
-    div.innerHTML = "🤖 Thinking...";
+    div.textContent = "🤖 Thinking...";
 
     chat.appendChild(div);
 
     chat.scrollTop = chat.scrollHeight;
 }
 
-function hideThinking() {
+function hideThinking(){
 
-    const thinking = document.getElementById("thinking");
+    const t = document.getElementById("thinking");
 
-    if (thinking) {
-
-        thinking.remove();
-
-    }
-
+    if(t) t.remove();
 }
 
-// ===== Ask AI =====
-async function askAI(message) {
+// Ask AI
+async function askAI(message){
 
-    try {
+    try{
 
-        const response = await fetch(
-            "https://openrouter.ai/api/v1/chat/completions",
-            {
+        const response = await fetch("/api/chat",{
 
-                method: "POST",
+            method:"POST",
 
-                headers: {
+            headers:{
+                "Content-Type":"application/json"
+            },
 
-                    "Authorization": `Bearer ${API_KEY}`,
+            body:JSON.stringify({
+                message:message
+            })
 
-                    "Content-Type": "application/json",
-
-                    "HTTP-Referer": "https://kumarmanjesh3975-art.github.io/UltraAI/",
-
-                    "X-Title": "UltraAI"
-
-                },
-
-                body: JSON.stringify({
-
-                    model: MODEL,
-
-                    max_tokens: 1000,
-
-                    messages: [
-
-                        {
-
-                            role: "system",
-
-                            content:
-                                "तुम UltraAI हो। अगर कोई पूछे तुम्हें किसने बनाया, तो जवाब दो: मुझे Manjesh Ji ने बनाया है।"
-
-                        },
-
-                        {
-
-                            role: "user",
-
-                            content: message
-
-                        }
-
-                    ]
-
-                })
-
-            }
-
-        );
+        });
 
         const data = await response.json();
 
-        if (data.error) {
+        if(data.error){
 
-            return "❌ " + data.error.message;
+            return "❌ " + data.error;
 
         }
 
         return data.choices[0].message.content;
 
-    } catch (err) {
+    }catch(err){
 
-        return "❌ Error: " + err.message;
+        return "❌ " + err.message;
 
     }
 
 }
-// ===== Send Message =====
-async function sendMessage() {
 
-    const message = input.value.trim();
+// Send Message
+async function sendMessage(){
 
-    if (!message) return;
+    const message=input.value.trim();
 
-    addMessage(message, "user");
+    if(!message) return;
 
-    input.value = "";
+    addMessage(message,"user");
+
+    input.value="";
 
     showThinking();
 
-    const reply = await askAI(message);
+    const reply=await askAI(message);
 
     hideThinking();
 
-    addMessage(reply, "ai");
+    addMessage(reply,"ai");
 
-    // AI बोले
-    if (typeof speakText === "function") {
+    if(typeof speakText==="function"){
         speakText(reply);
     }
+
 }
 
-// Enter दबाने पर Send
-input.addEventListener("keydown", function(e){
+// Enter Key
+input.addEventListener("keydown",function(e){
 
-    if(e.key === "Enter"){
+    if(e.key==="Enter"){
 
         sendMessage();
 
     }
 
 });
-function toggleMenu() {
-    const menu = document.getElementById("uploadMenu");
 
-    if (menu.style.display === "flex") {
-        menu.style.display = "none";
-    } else {
-        menu.style.display = "flex";
+// Upload Menu
+function toggleMenu(){
+
+    const menu=document.getElementById("uploadMenu");
+
+    if(menu.style.display==="flex"){
+
+        menu.style.display="none";
+
+    }else{
+
+        menu.style.display="flex";
+
     }
+
+}// ===============================
+// UltraAI - script.js Part 2
+// ===============================
+
+// Voice Mode
+function startVoiceMode() {
+
+    if (typeof startVoice === "function") {
+        startVoice();
+    }
+
 }
+
+// Image Upload
+document.getElementById("imageUpload").addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    addMessage("🖼️ Photo Selected: " + file.name, "user");
+
+});
+
+// Video Upload
+document.getElementById("videoUpload").addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    addMessage("🎥 Video Selected: " + file.name, "user");
+
+});
+
+// PDF Upload
+document.getElementById("pdfUpload").addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    addMessage("📄 PDF Selected: " + file.name, "user");
+
+});
+
+// Auto Scroll
+const observer = new MutationObserver(() => {
+
+    chat.scrollTo({
+
+        top: chat.scrollHeight,
+
+        behavior: "smooth"
+
+    });
+
+});
+
+observer.observe(chat, {
+
+    childList: true
+
+});
+
+// Close Upload Menu
+document.addEventListener("click", function (e) {
+
+    const menu = document.getElementById("uploadMenu");
+    const plus = document.getElementById("plusBtn");
+
+    if (!menu.contains(e.target) && e.target !== plus) {
+        menu.style.display = "none";
+    }
+
+});// ===============================
+// UltraAI - script.js Part 3
+// ===============================
+
+// Change Language
+const languageSelect = document.getElementById("languageSelect");
+
+if (languageSelect) {
+
+    languageSelect.addEventListener("change", () => {
+
+        const lang = languageSelect.value;
+
+        if (typeof recognition !== "undefined") {
+            recognition.lang = lang;
+        }
+
+        addMessage("🌍 Language Changed", "ai");
+
+    });
+
+}
+
+// Photo Edit
+async function editPhoto() {
+
+    const file = document.getElementById("imageUpload").files[0];
+
+    if (!file) {
+        alert("पहले Photo चुनें");
+        return;
+    }
+
+    addMessage("🖼️ Photo Uploading...", "user");
+
+    // यहाँ बाद में api/photo से जोड़ेंगे
+    setTimeout(() => {
+
+        addMessage("✅ Photo Ready For AI Edit", "ai");
+
+    }, 1500);
+
+}
+
+// PDF Upload
+function uploadPDF() {
+
+    const file = document.getElementById("pdfUpload").files[0];
+
+    if (!file) {
+
+        alert("पहले PDF चुनें");
+
+        return;
+
+    }
+
+    addMessage("📄 PDF Uploaded : " + file.name, "user");
+
+}
+
+// Premium
+function buyPremium() {
+
+    alert("⭐ Premium Coming Soon");
+
+}
+
+// App Ready
+window.onload = function () {
+
+    addMessage("🤖 Welcome to UltraAI!", "ai");
+
+};
