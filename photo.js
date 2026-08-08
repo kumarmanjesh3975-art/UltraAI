@@ -1,127 +1,78 @@
-// ===============================
-// UltraAI - photo.js
-// ===============================
+import OpenAI from "openai";
+import formidable from "formidable";
+import fs from "fs";
 
-const imageUpload = document.getElementById("imageUpload");
+export const config = {
+  api: {
+    bodyParser: false
+  }
+};
 
-if (imageUpload) {
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
-    imageUpload.addEventListener("change", function () {
+export default async function handler(req, res) {
 
-        const file = this.files[0];
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      error: "Method Not Allowed"
+    });
+  }
 
-        if (!file) return;
+  try {
 
-        addMessage("🖼️ Photo selected: " + file.name, "user");
-
-        // Preview
-        const reader = new FileReader();
-
-        reader.onload = function (event) {
-
-            const img = document.createElement("img");
-
-            img.src = event.target.result;
-
-            img.style.maxWidth = "80%";
-            img.style.borderRadius = "15px";
-            img.style.margin = "10px 0";
-
-            chat.appendChild(img);
-
-            chat.scrollTop = chat.scrollHeight;
-
-        };
-
-        reader.readAsDataURL(file);
-
+    const form = formidable({
+      multiples: false
     });
 
-}
+    const [fields, files] = await form.parse(req);
 
+    const imageFile = Array.isArray(files.image)
+      ? files.image[0]
+      : files.image;
 
-// AI Photo Edit
-async function editPhoto() {
+    const promptValue = Array.isArray(fields.prompt)
+      ? fields.prompt[0]
+      : fields.prompt;
 
-    const file = imageUpload?.files[0];
-
-    if (!file) {
-
-        alert("पहले Photo चुनें।");
-
-        return;
-
+    if (!imageFile) {
+      return res.status(400).json({
+        error: "Photo नहीं मिली।"
+      });
     }
 
-    const prompt = window.prompt(
-        "Photo में क्या बदलना है?",
-        "Background बदल दो"
-    );
-
-    if (!prompt) return;
-
-    addMessage("🖼️ AI Photo Editing शुरू...", "user");
-
-    try {
-
-        const formData = new FormData();
-
-        formData.append("image", file);
-        formData.append("prompt", prompt);
-
-        const response = await fetch("/api/photo", {
-
-            method: "POST",
-
-            body: formData
-
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-
-            throw new Error(
-                data.error || "Photo edit failed"
-            );
-
-        }
-
-        if (data.image) {
-
-            const result = document.createElement("img");
-
-            result.src = data.image;
-
-            result.style.maxWidth = "100%";
-            result.style.borderRadius = "15px";
-            result.style.marginTop = "10px";
-
-            chat.appendChild(result);
-
-            chat.scrollTop = chat.scrollHeight;
-
-            addMessage(
-                "✅ Photo editing पूरी हो गई।",
-                "ai"
-            );
-
-        } else {
-
-            addMessage(
-                "⚠️ Edited image नहीं मिली।",
-                "ai"
-            );
-
-        }
-
-    } catch (error) {
-
-        addMessage(
-            "❌ Photo Edit Error: " + error.message,
-            "ai"
-        );
-
+    if (!promptValue) {
+      return res.status(400).json({
+        error: "Photo edit prompt नहीं मिला।"
+      });
     }
 
+    const result = await openai.images.edit({
+      model: "gpt-image-1",
+      image: fs.createReadStream(imageFile.filepath),
+      prompt: promptValue
+    });
+
+    const image = result.data?.[0]?.b64_json;
+
+    if (!image) {
+      return res.status(500).json({
+        error: "Edited image नहीं मिली।"
+      });
+    }
+
+    return res.status(200).json({
+      image: `data:image/png;base64,${image}`
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    return res.status(500).json({
+      error: error.message || "Photo editing failed."
+    });
+
+  }
 }
