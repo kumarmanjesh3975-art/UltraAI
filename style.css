@@ -272,3 +272,44 @@ body{
         font-size:15px;
     }
 }
+/* ===========================
+   Premium
+=========================== */
+
+.premium-box{
+    width:90%;
+    max-width:420px;
+    margin:20px auto;
+    padding:22px;
+    text-align:center;
+    background:#1E293B;
+    border:1px solid #38BDF8;
+    border-radius:18px;
+}
+
+.premium-box h2{
+    margin-bottom:10px;
+}
+
+.premium-box p{
+    color:#CBD5E1;
+    margin-bottom:15px;
+}
+
+.premium-box ul{
+    list-style:none;
+    text-align:left;
+    line-height:2;
+    margin-bottom:15px;
+}
+
+.premium-box button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:12px;
+    background:#38BDF8;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+}
