@@ -281,3 +281,11 @@ window.onload = function () {
     addMessage("🤖 Welcome to UltraAI!", "ai");
 
 };
+function buyPremium(){
+
+    alert(
+        "⭐ UltraAI Premium\n\n" +
+        "Premium system जल्द activate होगा."
+    );
+
+}
