@@ -2,40 +2,34 @@
 // UltraAI - photo.js
 // ===============================
 
-console.log("🖼️ Photo Module Loaded");
+const imageUpload = document.getElementById("imageUpload");
 
-// Preview Image
-const imageInput = document.getElementById("imageUpload");
+if (imageUpload) {
 
-if (imageInput) {
-
-    imageInput.addEventListener("change", function () {
+    imageUpload.addEventListener("change", function () {
 
         const file = this.files[0];
 
         if (!file) return;
 
+        addMessage("🖼️ Photo selected: " + file.name, "user");
+
+        // Preview
         const reader = new FileReader();
 
-        reader.onload = function (e) {
+        reader.onload = function (event) {
 
-            let preview = document.getElementById("photoPreview");
+            const img = document.createElement("img");
 
-            if (!preview) {
+            img.src = event.target.result;
 
-                preview = document.createElement("img");
+            img.style.maxWidth = "80%";
+            img.style.borderRadius = "15px";
+            img.style.margin = "10px 0";
 
-                preview.id = "photoPreview";
+            chat.appendChild(img);
 
-                preview.style.width = "100%";
-                preview.style.maxWidth = "300px";
-                preview.style.marginTop = "15px";
-                preview.style.borderRadius = "12px";
-
-                document.querySelector(".photo-box").appendChild(preview);
-            }
-
-            preview.src = e.target.result;
+            chat.scrollTop = chat.scrollHeight;
 
         };
 
@@ -45,19 +39,89 @@ if (imageInput) {
 
 }
 
-// Edit Photo
-function editPhoto() {
 
-    const file = document.getElementById("imageUpload").files[0];
+// AI Photo Edit
+async function editPhoto() {
+
+    const file = imageUpload?.files[0];
 
     if (!file) {
 
-        alert("📷 पहले कोई Photo चुनें।");
+        alert("पहले Photo चुनें।");
 
         return;
 
     }
 
-    alert("✨ AI Photo Editing जल्द जोड़ी जाएगी।");
+    const prompt = window.prompt(
+        "Photo में क्या बदलना है?",
+        "Background बदल दो"
+    );
+
+    if (!prompt) return;
+
+    addMessage("🖼️ AI Photo Editing शुरू...", "user");
+
+    try {
+
+        const formData = new FormData();
+
+        formData.append("image", file);
+        formData.append("prompt", prompt);
+
+        const response = await fetch("/api/photo", {
+
+            method: "POST",
+
+            body: formData
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error || "Photo edit failed"
+            );
+
+        }
+
+        if (data.image) {
+
+            const result = document.createElement("img");
+
+            result.src = data.image;
+
+            result.style.maxWidth = "100%";
+            result.style.borderRadius = "15px";
+            result.style.marginTop = "10px";
+
+            chat.appendChild(result);
+
+            chat.scrollTop = chat.scrollHeight;
+
+            addMessage(
+                "✅ Photo editing पूरी हो गई।",
+                "ai"
+            );
+
+        } else {
+
+            addMessage(
+                "⚠️ Edited image नहीं मिली।",
+                "ai"
+            );
+
+        }
+
+    } catch (error) {
+
+        addMessage(
+            "❌ Photo Edit Error: " + error.message,
+            "ai"
+        );
+
+    }
 
 }
