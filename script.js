@@ -270,6 +270,8 @@ function uploadPDF() {
 
 // Premium
 function buyPremium() {
+    alert("⭐ UltraAI Premium...");
+}
 
     alert("⭐ Premium Coming Soon");
 
