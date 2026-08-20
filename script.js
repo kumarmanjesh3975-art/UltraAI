@@ -73,7 +73,7 @@ async function askAI(message) {
 
     try {
 
-        const response = await fetch("/api/chat", {
+        const response = await fetch("https://ultra-ai-ai88.vercel.app/api/chat", {
 
             method: "POST",
 
