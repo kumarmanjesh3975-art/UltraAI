@@ -1,104 +1,274 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>UltraAI</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<link rel="stylesheet" href="style.css">
+    <title>UltraAI</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- Razorpay -->
+    <script
+        src="https://checkout.razorpay.com/v1/checkout.js">
+    </script>
+
 </head>
 
 <body>
 
-<header class="header">
-<h1>🤖 UltraAI</h1>
-<p>Smart AI Assistant</p>
-</header>
-<section class="premium-box">
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-    <h2>⭐ UltraAI Premium</h2>
+    <header class="header">
 
-    <p>UltraAI की Premium सुविधाएँ इस्तेमाल करें</p>
+        <div class="logo">
+            🤖 UltraAI
+        </div>
 
-    <ul>
-        <li>🤖 ज्यादा AI Chat</li>
-        <li>🖼️ AI Photo Edit</li>
-        <li>📄 PDF Chat</li>
-        <li>🎤 Premium Voice</li>
-        <li>🚀 ज्यादा Usage Limit</li>
-    </ul>
+        <select
+            id="languageSelect"
+            aria-label="Language"
+        >
 
-    <button onclick="buyPremium()">
-        ⭐ Get Premium
-    </button>
+            <option value="hi-IN">
+                हिन्दी
+            </option>
 
-</section>
-<div class="language">
-<select id="languageSelect">
-<option value="hi-IN">🇮🇳 हिन्दी</option>
-<option value="en-US">🇺🇸 English</option>
-<option value="ur-PK">🇵🇰 اردو</option>
-</select>
-</div>
+            <option value="en-US">
+                English
+            </option>
 
-<div id="status">
-🟢 UltraAI Ready
-</div>
+            <option value="ur-PK">
+                اردو
+            </option>
 
-<div id="voiceCircle" onclick="startVoiceMode()">
-🎤
-</div>
+            <option value="es-ES">
+                Español
+            </option>
 
-<div id="chat" class="chat"></div>
+            <option value="fr-FR">
+                Français
+            </option>
 
-<div class="bottom">
+            <option value="de-DE">
+                Deutsch
+            </option>
 
-<button id="plusBtn" onclick="toggleMenu()">
-+
-</button>
+            <option value="ja-JP">
+                日本語
+            </option>
 
-<div id="uploadMenu" class="upload-menu">
+            <option value="zh-CN">
+                中文
+            </option>
 
-    <button onclick="document.getElementById('imageUpload').click()">
-        🖼️ Photo
-    </button>
+        </select>
 
-    <button onclick="editPhoto()">
-        ✨ AI Edit Photo
-    </button>
+    </header>
 
-    <button onclick="document.getElementById('videoUpload').click()">
-        🎥 Video
-    </button>
 
-    <button onclick="document.getElementById('pdfUpload').click()">
-        📄 PDF
-    </button>
+    <!-- =========================
+         STATUS
+    ========================== -->
 
-</div>
+    <div
+        id="status"
+        class="status"
+    >
+        🟢 UltraAI Ready
+    </div>
 
-<input type="file" id="imageUpload" accept="image/*" hidden>
 
-<input type="file" id="videoUpload" accept="video/*" hidden>
+    <!-- =========================
+         VOICE
+    ========================== -->
 
-<input type="file" id="pdfUpload" accept=".pdf" hidden>
+    <div
+        id="voiceCircle"
+        class="voice-circle"
+        onclick="startVoiceMode()"
+    >
+        🎤
+    </div>
 
-<input
-id="userInput"
-type="text"
-placeholder="कुछ पूछिए...">
 
-<button id="sendBtn" onclick="sendMessage()">
-➤
-</button>
+    <!-- =========================
+         CHAT
+    ========================== -->
 
-</div>
+    <main
+        id="chat"
+        class="chat"
+    >
+    </main>
 
-<script src="script.js"></script>
-<script src="speech.js"></script>
-<script src="photo.js"></script>
-<script src="pdf.js"></script>
+
+    <!-- =========================
+         UPLOAD MENU
+    ========================== -->
+
+    <div
+        id="uploadMenu"
+        class="upload-menu"
+        style="display:none;"
+    >
+
+        <button
+            type="button"
+            onclick="document.getElementById('imageUpload').click(); toggleMenu();"
+        >
+            🖼️ Photo
+        </button>
+
+
+        <button
+            type="button"
+            onclick="document.getElementById('videoUpload').click(); toggleMenu();"
+        >
+            🎥 Video
+        </button>
+
+
+        <button
+            type="button"
+            onclick="document.getElementById('pdfUpload').click(); toggleMenu();"
+        >
+            📄 PDF
+        </button>
+
+
+        <button
+            type="button"
+            onclick="editPhoto(); toggleMenu();"
+        >
+            ✨ AI Edit Photo
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         HIDDEN FILE INPUTS
+    ========================== -->
+
+    <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+        hidden
+    >
+
+    <input
+        type="file"
+        id="videoUpload"
+        accept="video/*"
+        hidden
+    >
+
+    <input
+        type="file"
+        id="pdfUpload"
+        accept="application/pdf"
+        hidden
+    >
+
+
+    <!-- =========================
+         PREMIUM
+    ========================== -->
+
+    <section
+        id="premiumBox"
+        class="premium-box"
+    >
+
+        <h2>
+            ⭐ UltraAI Premium
+        </h2>
+
+        <p>
+            Premium features unlock करें।
+        </p>
+
+        <button
+            type="button"
+            onclick="buyPremium()"
+        >
+            ⭐ Buy Premium ₹199
+        </button>
+
+    </section>
+
+
+    <!-- =========================
+         BOTTOM INPUT
+    ========================== -->
+
+    <div class="bottom-bar">
+
+        <button
+            id="plusBtn"
+            class="plus-btn"
+            type="button"
+            onclick="toggleMenu()"
+        >
+            ＋
+        </button>
+
+
+        <input
+            id="userInput"
+            type="text"
+            placeholder="UltraAI से पूछें..."
+            autocomplete="off"
+        >
+
+
+        <button
+            id="micBtn"
+            class="mic-btn"
+            type="button"
+            onclick="startVoiceMode()"
+        >
+            🎤
+        </button>
+
+
+        <button
+            id="sendBtn"
+            class="send-btn"
+            type="button"
+            onclick="sendMessage()"
+        >
+            ➤
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="speech.js"></script>
+
+    <script src="languages.js"></script>
+
+    <script src="photo.js"></script>
+
+    <script src="script.js"></script>
+
 
 </body>
+
 </html>
