@@ -1,6 +1,6 @@
 // ===============================
 // UltraAI - speech.js
-// Voice Recognition + Voice Reply
+// Voice Recognition
 // ===============================
 
 const SpeechRecognition =
@@ -11,23 +11,15 @@ let recognition = null;
 let isListening = false;
 
 // ===============================
-// Browser Support
-// ===============================
-
-function isVoiceSupported() {
-    return !!SpeechRecognition;
-}
-
-// ===============================
 // Start Voice
 // ===============================
 
 function startVoice() {
 
-    if (!isVoiceSupported()) {
+    if (!SpeechRecognition) {
         alert(
-            "🎤 Voice Recognition इस browser में supported नहीं है।\n\n" +
-            "Chrome browser में UltraAI खोलकर फिर कोशिश करें।"
+            "⚠️ इस browser में Voice Recognition उपलब्ध नहीं है। " +
+            "Chrome में UltraAI खोलकर फिर कोशिश करें।"
         );
         return;
     }
@@ -46,7 +38,9 @@ function startVoice() {
         document.getElementById("languageSelect");
 
     recognition.lang =
-        languageSelect?.value || "hi-IN";
+        languageSelect
+            ? languageSelect.value
+            : "hi-IN";
 
     recognition.onstart = function () {
 
@@ -56,7 +50,8 @@ function startVoice() {
             document.getElementById("status");
 
         if (status) {
-            status.textContent = "🔴 Listening...";
+            status.textContent =
+                "🔴 सुन रहा हूँ...";
         }
     };
 
@@ -70,19 +65,23 @@ function startVoice() {
 
         if (input) {
             input.value = transcript;
+            input.focus();
         }
 
-        // Voice से बोलने के बाद automatically send
-        if (typeof sendMessage === "function") {
-            setTimeout(() => {
-                sendMessage();
-            }, 300);
+        const status =
+            document.getElementById("status");
+
+        if (status) {
+            status.textContent =
+                "🟢 UltraAI Ready";
         }
+
+        isListening = false;
     };
 
     recognition.onerror = function (event) {
 
-        console.log(
+        console.error(
             "Voice Recognition Error:",
             event.error
         );
@@ -93,13 +92,28 @@ function startVoice() {
             document.getElementById("status");
 
         if (status) {
-            status.textContent = "🟢 UltraAI Ready";
+            status.textContent =
+                "🟢 UltraAI Ready";
         }
 
         if (event.error === "not-allowed") {
+
             alert(
-                "🎤 Microphone permission बंद है।\n\n" +
-                "Browser settings में Microphone permission Allow करें।"
+                "🎤 Microphone permission बंद है। " +
+                "Browser में Microphone permission Allow करें।"
+            );
+
+        } else if (event.error === "no-speech") {
+
+            alert(
+                "🎤 आवाज़ नहीं मिली। फिर से Mic दबाएँ।"
+            );
+
+        } else {
+
+            console.log(
+                "Voice error:",
+                event.error
             );
         }
     };
@@ -112,15 +126,18 @@ function startVoice() {
             document.getElementById("status");
 
         if (status) {
-            status.textContent = "🟢 UltraAI Ready";
+            status.textContent =
+                "🟢 UltraAI Ready";
         }
     };
 
     try {
+
         recognition.start();
+
     } catch (error) {
 
-        console.log(
+        console.error(
             "Voice Start Error:",
             error
         );
@@ -129,6 +146,7 @@ function startVoice() {
     }
 }
 
+
 // ===============================
 // Stop Voice
 // ===============================
@@ -136,6 +154,7 @@ function startVoice() {
 function stopVoice() {
 
     if (recognition) {
+
         try {
             recognition.stop();
         } catch (error) {
@@ -149,20 +168,20 @@ function stopVoice() {
         document.getElementById("status");
 
     if (status) {
-        status.textContent = "🟢 UltraAI Ready";
+        status.textContent =
+            "🟢 UltraAI Ready";
     }
 }
 
+
 // ===============================
-// Change Language
+// Voice Mode
 // ===============================
 
-function changeVoiceLanguage(lang) {
-
-    if (recognition && isListening) {
-        recognition.lang = lang;
-    }
+function startVoiceMode() {
+    startVoice();
 }
+
 
 // ===============================
 // Text To Speech
@@ -171,40 +190,29 @@ function changeVoiceLanguage(lang) {
 function speakText(text) {
 
     if (!("speechSynthesis" in window)) {
-        console.log(
-            "Text to Speech supported नहीं है।"
-        );
         return;
     }
 
-    if (!text) return;
+    if (!text) {
+        return;
+    }
 
-    // पहले चल रही आवाज बंद करो
     window.speechSynthesis.cancel();
 
     const languageSelect =
         document.getElementById("languageSelect");
 
     const lang =
-        languageSelect?.value || "hi-IN";
+        languageSelect
+            ? languageSelect.value
+            : "hi-IN";
 
     const speech =
         new SpeechSynthesisUtterance(text);
 
     speech.lang = lang;
-    speech.rate = 0.95;
+    speech.rate = 1;
     speech.pitch = 1;
-    speech.volume = 1;
 
     window.speechSynthesis.speak(speech);
 }
-
-// ===============================
-// Export
-// ===============================
-
-window.startVoice = startVoice;
-window.stopVoice = stopVoice;
-window.speakText = speakText;
-window.changeVoiceLanguage =
-    changeVoiceLanguage;
